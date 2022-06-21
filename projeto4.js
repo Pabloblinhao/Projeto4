@@ -9,9 +9,9 @@ let chose2 = 'Qual lado deseja seguir \n[1] Direito \n[2] Esquerdo ?'
 
 let elcid = {
     ataque: 20,
-    defesa: 10,
+    armadura: 10,
     vida: 100,
-    bonus: +5,
+    bonus: 5,
 
     treinarAtaque: function () {
         this.ataque += 1;
@@ -19,18 +19,19 @@ let elcid = {
     },
 
     skillsNoMomento: function() { 
-        console.log(`No momento Elcid tem ${this.ataque} de ataque, ${this.defesa} de defesa e ${this.vida} de vida.`);
+        console.log(`No momento Elcid tem ${this.ataque} de ataque, ${this.armadura} de defesa e ${this.vida} de vida.`);
     },
 
     elcidGanha: function(inimigo) {
-        console.log(`Você ganou do inimigo ${inimigo}`)
+        console.log(`Você ganhou do inimigo ${inimigo}`)
     }
+    
 }
 
 // Função para condições
 function condiction( condiction ) {
     if (condiction == 1) {
-        figthByTurn('Herald', 10, 30);
+        figthByTurn('Herald', 15, 30);
     } else if ( condiction == 2 ) {
         traine();
     } else if ( condiction == 3 ) {
@@ -71,7 +72,7 @@ function messagePosChalenge() {
     console.log();
     console.log();
     console.log();
-    console.log('Estamos na metade de nossa jornada Elcid, precisamos seguir o mais rapido possivel!');
+    console.log('Estamos na metade de nossa jornada Elcid, precisamos seguir o mais rapido possivel, o tempo está correndo!');
     console.log();
     console.log();
     console.log();
@@ -109,7 +110,7 @@ function figthByTurn(n, f, v) {
 
         let enemy = listOfChar.filter(p => p.nome === n);
 
-        console.log(`Você esta diante do inimigo um feroz ${n}...`)
+        console.log(`Você esta diante de um inimigo feroz ${n}...`)
 
         let i = 1;
 
@@ -146,7 +147,13 @@ function figthByTurn(n, f, v) {
             if (enemy[0].vida > 0) {
                 if (Math.floor(Math.random() * 60) > 30) {
                     console.log('Inimigo acertou o ataque!!');
-                    elcid.vida -= enemy[0].forca;
+
+                    if (opt == 2 ) {
+                        elcid.vida -= enemy[0].forca - elcid.armadura;
+                    } else {
+                        elcid.vida -= enemy[0].forca;
+                    }
+                    
                 } else {
                     console.log('Inimigo errou o ataque!!');
                 }
@@ -180,7 +187,7 @@ function figthByTurn(n, f, v) {
 
 function secondChalenge() {
     if ( time > 0 ) {
-        console.log('Logo a frente a estrada vira uma bifucarcao, lado direito contendo um lobo e lado esquerdo um urso.');
+        console.log('Logo a frente a estrada vira uma bifucarcao, lado direito contendo um lobo e lado esquerdo um urso, mas lembre-se o tempo é precioso.');
         console.log(chose2);
         let second = +prompt();
         
@@ -215,7 +222,7 @@ function finalChalenge() {
     if (time > 0) {
         console.log("Falta o ultimo obstaculo de sua jornada, o berseker conhecido como o 'esmaga ossos'");
 
-        console.log('Você tem duas opções agora, tentar o ataque furtivo ou atacar de frente, oque pretende fazer ?');
+        console.log('Você tem duas opções agora, tentar o ataque furtivo (contendo bonus no ataque) ou atacar de frente, oque pretende fazer ?');
         console.log('[1] Furtivo \n[2] Frente');
         let second = +prompt();
         
@@ -247,13 +254,18 @@ secondChalenge();
 
 console.log("Parabens por enfrentar esse desfaio selvagem.");
 
-finalChalenge();
-console.log("Elcid você teve uma jornada dificil, parabéns por concluir sua jornada e levar a mensagem para o rei da cidaded de Falkirk.");
-console.log("Tempo da jornada que restou " + time);
-elcid.skillsNoMomento();
-console.log("Elcid você Derrotou esses inimigos na sua jornada!");
-for (let i = 0; i < listOfChar.length; i++) {
-    console.log(listOfChar[i].nome);
+finalChalenge(); 
+
+if (time >= 0 && elcid.vida >= 0) {
+    console.log("Elcid você teve uma jornada dificil, parabéns por concluir sua jornada e levar a mensagem para o rei da cidaded de Falkirk.");
+    console.log("Tempo da jornada que restou " + time);
+    elcid.skillsNoMomento();
+    console.log("Elcid você Derrotou esses inimigos na sua jornada!");
+    for (let i = 0; i < listOfChar.length; i++) {
+        console.log(listOfChar[i].nome);
+    }
+} else {
+    console.log('Tente novamente, até a próxima!!!!')
 }
 
     

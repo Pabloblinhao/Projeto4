@@ -1,0 +1,23 @@
+{
+  "name": "projeto-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "projeto4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pabloblinhao/Projeto4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pabloblinhao/Projeto4/issues"
+  },
+  "homepage": "https://github.com/Pabloblinhao/Projeto4#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
